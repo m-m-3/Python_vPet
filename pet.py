@@ -11,8 +11,9 @@ class Pet:
         self.LimitStatus()
 
     def Play(self, chosenToy):
-        # TODO
-        pass
+        self.Status.Happiness += chosenToy.AddsHappiness
+        self.Status.Energy -= chosenToy.CostsEnergy
+        self.LimitStatus()
 
     def SpendTime(self, choice):
         if choice == 1:  # krótka przerwa
