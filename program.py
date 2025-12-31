@@ -99,6 +99,7 @@ def main():
 
     while True:
         clear()
+        print(pet_status(pet.Status))
         print(f"===== {pet.Name} =====")
         print("1. Statystyki")
         print("2. Nakarm")
@@ -122,6 +123,25 @@ def main():
         else:
             print("Niepoprawny wybór.")
             pause()
+        if pet.IsGameOver():
+            clear()
+            print(f" /\\_/\\\n( x.x )\n /___\\ {pet.Name}: GG.")
+            while True:
+                key = input("Wpisz F, aby oddać hołd... ").strip().lower()
+                if key == "f":
+                    break
+                print("Tylko F.")
+            return
+
+def pet_status(status):
+    if status.Hunger >= 80:
+        return " /\\_/\\\n( o.o )\n /___\\ STATUS: GŁODNY!"
+    elif status.Happiness <= 20:
+        return " /\\_/\\\n( T.T )\n /___\\ STATUS: SMUTNY!"
+    elif status.Energy <= 20:
+        return " /\\_/\\\n( -.- )\n /___\\ STATUS: SŁABY!"
+    else:
+        return " /\\_/\\\n( ^.^ )\n /___\\ STATUS: OK"
 
 if __name__ == "__main__":
     main()

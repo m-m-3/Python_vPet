@@ -54,5 +54,4 @@ class Pet:
             self.Status.Energy = 100
 
     def IsGameOver(self):
-        # TODO
-        return False
+        return self.Status.Hunger >= 100 or self.Status.Happiness <= 0 or self.Status.Energy <= 0
