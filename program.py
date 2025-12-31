@@ -25,7 +25,7 @@ def main():
         choice = input("Wybierz opcję: ")
 
         if choice == "1":
-            print("TODO: Statystyki")
+            print(pet.Status)
             pause()
         elif choice == "2":
             print("TODO: Karmienie")
