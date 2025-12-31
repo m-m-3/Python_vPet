@@ -14,8 +14,42 @@ class Pet:
         pass
 
     def SpendTime(self, choice):
-        # TODO
-        pass
+        if choice == 1:  # krótka przerwa
+            self.Status.Hunger += 5
+            self.Status.Happiness -= 5
+            self.Status.Energy += 5
+        elif choice == 2:  # drzemka
+            self.Status.Hunger += 10
+            self.Status.Happiness -= 5
+            self.Status.Energy += 15
+        elif choice == 3:  # spanie
+            self.Status.Hunger += 15
+            self.Status.Happiness -= 10
+            self.Status.Energy += 25
+        elif choice == 4:  # spacer
+            self.Status.Hunger += 10
+            self.Status.Happiness += 15
+            self.Status.Energy -= 10
+        else:
+            return
+
+        self.LimitStatus()
+
+    def LimitStatus(self):
+        if self.Status.Hunger < 0:
+            self.Status.Hunger = 0
+        if self.Status.Hunger > 100:
+            self.Status.Hunger = 100
+
+        if self.Status.Happiness < 0:
+            self.Status.Happiness = 0
+        if self.Status.Happiness > 100:
+            self.Status.Happiness = 100
+
+        if self.Status.Energy < 0:
+            self.Status.Energy = 0
+        if self.Status.Energy > 100:
+            self.Status.Energy = 100
 
     def IsGameOver(self):
         # TODO

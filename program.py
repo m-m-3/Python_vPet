@@ -7,6 +7,38 @@ def clear():
 def pause():
     input("Wciśnij Enter, aby wrócić do menu...")
 
+def read_option(max_value):
+    while True:
+        raw = input("Wybierz opcję: ")
+        try:
+            value = int(raw)
+        except ValueError:
+            print(f"Niepoprawny wybór. Podaj liczbę 0-{max_value}.")
+            continue
+
+        if 0 <= value <= max_value:
+            return value
+
+        print(f"Niepoprawny wybór. Podaj liczbę 0-{max_value}.")
+
+def spend_time_menu(pet):
+    clear()
+    print("===== SPĘDŹ CZAS =====")
+    print("1. Krótka przerwa")
+    print("2. Drzemka")
+    print("3. Spanie")
+    print("4. Spacer")
+    print("0. Wróć")
+
+    choice = read_option(4)
+    if choice == 0:
+        return
+
+    pet.SpendTime(choice)
+    print("Statystyki po aktywności:")
+    print(pet.Status)
+    pause()
+
 def main():
     clear()
     print("===== WIRTUALNE ZWIERZĄTKO =====")
@@ -34,8 +66,7 @@ def main():
             print("TODO: Zabawa")
             pause()
         elif choice == "4":
-            print("TODO: Spędź czas")
-            pause()
+            spend_time_menu(pet)
         elif choice == "0":
             return
         else:
