@@ -1,5 +1,6 @@
 import os
 from pet import Pet
+from food import Food
 
 def clear():
     os.system("cls" if os.name == "nt" else "clear")
@@ -9,9 +10,9 @@ def pause():
 
 def read_option(max_value):
     while True:
-        raw = input("Wybierz opcję: ")
+        userInput = input("Wybierz opcję: ")
         try:
-            value = int(raw)
+            value = int(userInput)
         except ValueError:
             print(f"Niepoprawny wybór. Podaj liczbę 0-{max_value}.")
             continue
@@ -39,11 +40,36 @@ def spend_time_menu(pet):
     print(pet.Status)
     pause()
 
+def feed_menu(pet, foods):
+    clear()
+    print("===== NAKARM =====")
+
+    for i, food_item in enumerate(foods, start=1):
+        print(f"{i}. {food_item.Name} [Głód: -{food_item.ReducesHungerBy}, Energia: +{food_item.AddsEnergy}]")
+
+    print("0. Wróć")
+    choice = read_option(len(foods))
+    if choice == 0:
+        return
+
+    chosen = foods[choice - 1]
+    pet.Feed(chosen)
+
+    print(f"Nakarmiono: {chosen.Name}")
+    print("Statystyki po karmieniu:")
+    print(pet.Status)
+    pause()
+
 def main():
     clear()
     print("===== WIRTUALNE ZWIERZĄTKO =====")
     pet_name = input("Podaj imię zwierzątka: ") or ""
     pet = Pet(Name=pet_name)
+
+    foods = [
+        Food(Name="Karma sucha", ReducesHungerBy=15, AddsEnergy=10),
+        Food(Name="Karma mokra", ReducesHungerBy=30, AddsEnergy=20),
+    ]
 
     while True:
         clear()
@@ -60,8 +86,7 @@ def main():
             print(pet.Status)
             pause()
         elif choice == "2":
-            print("TODO: Karmienie")
-            pause()
+            feed_menu(pet, foods)
         elif choice == "3":
             print("TODO: Zabawa")
             pause()

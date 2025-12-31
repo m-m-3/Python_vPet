@@ -6,8 +6,9 @@ class Pet:
         self.Status = Status()
 
     def Feed(self, chosenFood):
-        # TODO
-        pass
+        self.Status.Hunger -= chosenFood.ReducesHungerBy
+        self.Status.Energy += chosenFood.AddsEnergy
+        self.LimitStatus()
 
     def Play(self, chosenToy):
         # TODO
