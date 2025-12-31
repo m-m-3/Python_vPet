@@ -8,7 +8,9 @@ Aplikacja w Python z klasami:
 3. Food
 4. Toy
 5. Status
+
 i funkcjonalnością:
+
 1. Karmienie
 2. Zabawa
 3. Statystyki (głód, zabawa, energia)
